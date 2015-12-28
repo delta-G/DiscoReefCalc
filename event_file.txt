@@ -1,0 +1,6 @@
+1393044531074,Water Test,Calcium,400.0,                                                            
+1393044531074,Water Test,Alkalinity,115.0,                                                         
+1393044531074,Water Test,Magnesium,1250.0,                                                         
+1393044581653,Dosage Set,Alkalinity Part,0.0,26.31578947368421,                                    
+1393044581658,Dosage Set,Calcium Part,0.0,27.027027027027028,                                      
+1393044581664,Dosage Set,Magnesium Part,0.0,15.957446808510639,                                    

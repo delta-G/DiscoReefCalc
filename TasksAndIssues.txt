@@ -1,0 +1,8 @@
+
+
+Still need to figure out the alignment thing with tank record files.  Using fixed width columns is OK, but takes up a lot of space.  
+Might be easier to keep a table of offsets.  
+That would be two extra bytes a record instead of 50 empty spaces. 
+
+
+Create new tank wizard.  If there are no tanks at startup, prompt to create one.  
