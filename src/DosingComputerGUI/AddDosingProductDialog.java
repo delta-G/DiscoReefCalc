@@ -1,4 +1,4 @@
-/**     Copyright (C) 2015  David Caldwell  disco47dave@gmail.com
+/**     Copyright (C) 2015  David Caldwell  disco47dave at gmail dot com
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -28,7 +28,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
+//import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
@@ -40,7 +40,7 @@ public class AddDosingProductDialog extends JDialog {
     
     DefaultComboBoxModel model; 
     
-    private JLabel inLabel;
+    //private JLabel inLabel;
     private JButton cancelButton;
     private JButton okButton;
     private JComboBox productComboBox;
@@ -60,7 +60,7 @@ public class AddDosingProductDialog extends JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        inLabel = new JLabel("Choose Product From List and Enter Dosage:");
+        //inLabel = new JLabel("Choose Product From List and Enter Dosage:");
         cancelButton = new JButton();
         okButton = new JButton();
         productComboBox = new JComboBox();
