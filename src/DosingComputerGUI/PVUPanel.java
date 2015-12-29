@@ -65,6 +65,8 @@ public class PVUPanel extends JPanel {
         unitModel = new DefaultComboBoxModel(currentParamSelection.getUnits());
         if (currentParamSelection == Parameter.ALKALINITY) {
             unitModel.setSelectedItem(Preferences.getAlkUnit());
+        } else if(currentParamSelection == Parameter.SALINITY){
+        	unitModel.setSelectedItem("S.G.");
         } else {
             unitModel.setSelectedItem("ppm");
         }

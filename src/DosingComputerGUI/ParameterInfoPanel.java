@@ -48,6 +48,9 @@ public class ParameterInfoPanel extends JPanel {
         if (p == Parameter.ALKALINITY){
             unitStr = Preferences.getAlkUnit();
         }
+        else if (p == Parameter.SALINITY){
+            unitStr = "S.G.";
+        }
         else {
             unitStr = "ppm";
         }
@@ -101,6 +104,9 @@ public class ParameterInfoPanel extends JPanel {
         String formatStr = "%.0f %s";
         if (unitStr.equals("dKH") || unitStr.equals("mM") || unitStr.equals("mEq/L")){
             formatStr = "%.2f %s";
+        }
+        else if (unitStr.equalsIgnoreCase("S.G.")){
+        	formatStr = "%.4f %s";
         }
         return String.format(formatStr, outnum, unitStr);
     }
