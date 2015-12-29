@@ -66,7 +66,7 @@ public class PVUPanel extends JPanel {
         if (currentParamSelection == Parameter.ALKALINITY) {
             unitModel.setSelectedItem(Preferences.getAlkUnit());
         } else if(currentParamSelection == Parameter.SALINITY){
-        	unitModel.setSelectedItem("S.G.");
+        	unitModel.setSelectedItem(Preferences.getSalinityUnit());
         } else {
             unitModel.setSelectedItem("ppm");
         }

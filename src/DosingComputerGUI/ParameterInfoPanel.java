@@ -49,7 +49,7 @@ public class ParameterInfoPanel extends JPanel {
             unitStr = Preferences.getAlkUnit();
         }
         else if (p == Parameter.SALINITY){
-            unitStr = "S.G.";
+            unitStr = Preferences.getSalinityUnit();;
         }
         else {
             unitStr = "ppm";

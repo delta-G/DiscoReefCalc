@@ -29,6 +29,7 @@ public class Preferences {
         prefMap.put("Home Directory", "./");
         prefMap.put("Tanks Directory", "./");
         prefMap.put("Alkalinity Units", "dKH");
+        prefMap.put("Salinity Units", "S.G.");
         prefMap.put("Months to Keep History", "6");
         prefMap.put("Tank Volume Units", VolumeUnits.GALLON.toString());
         prefMap.put("Dose Volume Units", VolumeUnits.MILLILITER.toString());
@@ -77,6 +78,8 @@ public class Preferences {
     public static String getAlkUnit() {
         return prefMap.get("Alkalinity Units");
     }
+    
+    
 
     public static void setAlkUnit(String ustr) {
 
@@ -84,6 +87,19 @@ public class Preferences {
             prefMap.put("Alkalinity Units", ustr);
         } else {
             ErrorDialog.showErrorDialog("Bad Alkalinity Unit" + ustr);
+        }
+    }
+    
+    public static String getSalinityUnit() {
+        return prefMap.get("Salinity Units");
+    }
+    
+    public static void setSalinityUnit(String ustr) {
+
+        if (Arrays.asList(Parameter.SALINITY.getUnits()).contains(ustr)) {
+            prefMap.put("Salinity Units", ustr);
+        } else {
+            ErrorDialog.showErrorDialog("Bad Salinity Unit" + ustr);
         }
     }
 

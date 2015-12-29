@@ -3,4 +3,5 @@
 <Tank Volume Units>gal
 <Tanks Directory>E:/DosCompFiles/
 <Dose Volume Units>mL
+<Salinity Units>ppt
 <Months to Keep History>6
