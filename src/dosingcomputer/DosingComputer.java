@@ -4,7 +4,7 @@
  */
 package dosingcomputer;
 
-import DosingComputerGUI.GUIFrameOld;
+//import DosingComputerGUI.GUIFrameOld;
 import DosingComputerGUI.GUIFrame;
 import java.io.File;
 import java.util.ArrayList;
