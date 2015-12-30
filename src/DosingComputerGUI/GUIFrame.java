@@ -24,16 +24,23 @@ import dosingcomputer.Parameter;
 import dosingcomputer.Preferences;
 import dosingcomputer.Tank;
 import dosingcomputer.TankFile;
+
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+
 import java.awt.Insets;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.TreeSet;
+
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -45,7 +52,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
+
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
@@ -185,13 +194,41 @@ public class GUIFrame  extends JFrame {
 
     private void setupProductPanels() {
         prodPanel.removeAll();
-        prodPanel.setLayout(new GridLayout(0, 1));
-        DosePanel labelPanel = new DosePanel();
-        prodPanel.add(labelPanel);
+//        prodPanel.setLayout(new GridLayout(0, 1));
+//        DosePanel labelPanel = new DosePanel();
+//        prodPanel.add(labelPanel);
+//        for (DosingProduct dp : this.getCurrentTank().getDosingProducts()) {
+//            prodPanel.add(new DosePanel(dp));
+//        }
+        
+        JPanel npan = new JPanel();
+        JPanel dpan = new JPanel();
+        
+        npan.setLayout(new GridLayout(0, 1));
+        dpan.setLayout(new GridLayout(0, 1));
+        npan.add(new JLabel("Dosing Product Name"));
+        dpan.add(new JLabel("Daily Dosage"));
         for (DosingProduct dp : this.getCurrentTank().getDosingProducts()) {
-            prodPanel.add(new DosePanel(dp));
+        	npan.add(new JLabel(dp.getName()));
+        	JPanel ppan = new JPanel();
+        	ppan.setLayout(new BoxLayout(ppan, BoxLayout.X_AXIS));
+        	JLabel doslab = new JLabel();
+        	JLabel unitlab = new JLabel();
+        	doslab.setText(String.format("%.2f", Preferences.getDoseVolumeUnit().convertToUnit(this.getCurrentTank().getDailyDose(dp))));
+        	unitlab.setText(Preferences.getDoseVolumeUnit().toString());
+        	ppan.add(doslab);
+        	ppan.add(Box.createRigidArea(new Dimension(10,0)));
+        	ppan.add(unitlab);
+        	
+        	dpan.add(ppan);
         }
+        prodPanel.setLayout(new BoxLayout(prodPanel, BoxLayout.X_AXIS));
+        prodPanel.add(npan);
+        prodPanel.add(Box.createRigidArea(new Dimension(35,0)));
+        prodPanel.add(dpan);
+        
         prodPanel.revalidate();
+        
     }
     
     
