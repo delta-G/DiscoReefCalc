@@ -100,9 +100,9 @@ public class DosePanel extends JPanel {
         
         nameLabel = new JLabel("Dosing Product Name");
         Dimension d = nameLabel.getPreferredSize();
-        nameLabel.setMinimumSize(new Dimension (150, (int) d.getHeight()));
-        nameLabel.setPreferredSize(new Dimension (150, (int) d.getHeight()));
-        nameLabel.setMaximumSize(new Dimension (150, (int) d.getHeight()));
+        nameLabel.setMinimumSize(new Dimension (250, (int) d.getHeight()));
+        nameLabel.setPreferredSize(new Dimension (250, (int) d.getHeight()));
+        nameLabel.setMaximumSize(new Dimension (250, (int) d.getHeight()));
         doseLabel = new JLabel("Daily Dosage");
         unitLabel = new JLabel("    ");
         
