@@ -94,11 +94,7 @@ public class DosingProduct {
         return calculateDosage(param, tank.getDailyConsumption(param), tank.getVolume());        
     }
 
-//    public void addDose(Water water, Integer Volume, Double dosage){        
-//        Double amountAdded = (dosage * this.concentration) / Volume;
-//        Double currentLevel = water.getValue(this.targetParameter);
-//        water.setValue(targetParameter, amountAdded + currentLevel);                
-//    }
+
     public Double calculateChange(Parameter param, Double tankVol, Double doseVol) {
         Double amountAdded = 0.0;
         if (this.targetParameters.contains(param)) {
@@ -110,4 +106,37 @@ public class DosingProduct {
     public Double calculateChange(Parameter param, Tank tank, Double doseVol) {
         return calculateChange(param, tank.getVolume(), doseVol);
     }
+    
+    public String stringifyProduct(){
+    	String retval = "";
+    	retval += this.name;
+    	for(Parameter p : targetParameters){
+    		retval += ":>" + p.getName() + ":=" + concentrations.get(p);
+    	}
+    	return retval;
+    }
+    
+    public static DosingProduct productFactory(String instr){
+    	String parts[] = instr.split(":>");
+    	int count = 0;
+    	String inName = "ERROR";
+    	ArrayList<Parameter> inPars = new ArrayList<>();
+    	ArrayList<Double> inCons = new ArrayList<>();
+    	
+    	
+    	for(String s : parts){
+    		if(count == 0){
+    			inName = s;
+    			count++;
+    		}
+    		else {
+    			String pst[] = s.split(":=");
+    			inPars.add(Parameter.parseParam(pst[0]));
+    			inCons.add(Double.parseDouble(pst[1]));
+    			count++;
+    		}
+    	}
+    	return new DosingProduct(inName, inPars, inCons);
+    }
+    
 }

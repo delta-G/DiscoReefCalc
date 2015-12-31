@@ -501,8 +501,7 @@ public class GUIFrame  extends JFrame {
     
     
     
-     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
+     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {  
 //        System.out.println("******** Tank Redord Start *******");
 //        for (TankRecord rec : this.getCurrentTank().getTankRecordFile()) {
 //            System.out.println(rec.toString());
@@ -592,9 +591,7 @@ public class GUIFrame  extends JFrame {
         mdf.setVisible(true);
     }                                                      
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
-
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {   
         JFrame jf = new JFrame();
         jf.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         jf.add(new TimeSpoofPanel());
@@ -604,8 +601,7 @@ public class GUIFrame  extends JFrame {
 
     }                                        
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {  
         JFrame jf = new JFrame();
         jf.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
@@ -620,8 +616,7 @@ public class GUIFrame  extends JFrame {
         // TODO add your handling code here:
     }                                      
 
-    private void tankMenuItemWaterChangeActionPerformed(java.awt.event.ActionEvent evt) {                                                        
-        // TODO add your handling code here:
+    private void tankMenuItemWaterChangeActionPerformed(java.awt.event.ActionEvent evt) {   
         WaterChangeDialog wcf = new WaterChangeDialog();
         wcf.setLocationRelativeTo(this); 
         wcf.setMinimumSize(wcf.getPreferredSize());
