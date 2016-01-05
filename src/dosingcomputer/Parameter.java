@@ -126,6 +126,19 @@ public enum Parameter {
 		}
 		return retval;
 	}
+	
+	public static String unitFormatter(Double aVal, String aUnit){
+		String formatStr = "%.0f";
+		if(aUnit.equals("dKH") || aUnit.equals("mEq/L")){
+			formatStr = "%.2f";
+		} else if (aUnit.equals("S.G.") || aUnit.equals("mM")){
+			formatStr = "%.4f";
+		} else if (aUnit.equals("ppt")){
+			formatStr = "%.1f";
+		}
+		
+		return String.format(formatStr,  aVal);
+	}
 
 	// converts from the specified unit to mM
 	// This is going from the user to the program

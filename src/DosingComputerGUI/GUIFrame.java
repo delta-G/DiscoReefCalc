@@ -35,6 +35,7 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.beans.PropertyChangeEvent;
@@ -71,6 +72,7 @@ public class GUIFrame  extends JFrame {
     private JMenuItem dosingproductsMenuItemSetDosage;
     private JMenuItem fileMenuItemCreateTank;
     private JMenuItem fileMenuItemSaveTank;
+    private JMenuItem editMenuItemCalculator;
     private JButton exitButton;
 //    private JButton jButton2;
 //    private JButton jButton3;
@@ -171,12 +173,7 @@ public class GUIFrame  extends JFrame {
 
         @Override
         public void windowClosing(WindowEvent e) {
-            TreeSet<String> names = DosingComputer.getTankNames();
-            for (String tn : names) {
-                TankFile.saveTankToFile(DosingComputer.getTank(tn));
-            }
-            Preferences.savePreferences();
-            System.exit(0);
+            DosingComputer.closeOut();
         }
     }
 
@@ -250,6 +247,7 @@ public class GUIFrame  extends JFrame {
         jMenu_File = new JMenu();
         fileMenuItemCreateTank = new JMenuItem();
         fileMenuItemSaveTank = new JMenuItem();
+        editMenuItemCalculator = new JMenuItem();
         jMenu_Edit = new JMenu();
         jMenu_Tank = new JMenu();
         tankMenuItemAddWaterTest = new JMenuItem();
@@ -331,6 +329,17 @@ public class GUIFrame  extends JFrame {
         jMenuBar.add(jMenu_File);
 
         jMenu_Edit.setText("Edit");
+        
+        editMenuItemCalculator.setText("Calculator");
+        editMenuItemCalculator.addActionListener(new java.awt.event.ActionListener() {
+        	public void actionPerformed(java.awt.event.ActionEvent ae){
+        		editMenuItemCalculatorActionPerformed(ae);
+        	}
+
+			
+        });
+        jMenu_Edit.add(editMenuItemCalculator);
+        
         jMenuBar.add(jMenu_Edit);
 
         jMenu_Tank.setText("Tank");
@@ -527,7 +536,17 @@ public class GUIFrame  extends JFrame {
 
     private void fileMenuItemSaveTankActionPerformed(java.awt.event.ActionEvent evt) {                                                     
         TankFile.saveTankToFile(this.getCurrentTank());
-    }                                                    
+    }         
+    
+    private void editMenuItemCalculatorActionPerformed(java.awt.event.ActionEvent ae) {
+		
+    	CalculatorDialog cdi = new CalculatorDialog();
+    	cdi.setLocationRelativeTo(this);;
+    	cdi.setMinimumSize(cdi.getPreferredSize());
+    	cdi.setModal(true);
+    	cdi.setVisible(true);
+		
+	}
 
     private void tankMenuItemAddWaterTestActionPerformed(java.awt.event.ActionEvent evt) {                                                         
         AddWaterTestDialog resframe = new AddWaterTestDialog(this.getCurrentTank());

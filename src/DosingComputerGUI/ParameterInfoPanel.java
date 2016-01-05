@@ -115,10 +115,10 @@ public class ParameterInfoPanel extends JPanel {
     private String convertAndFormat(Double innum) {
         Double outnum = param.convertToUnit(unitStr, innum);
         String formatStr = "%.0f %s";
-        if (unitStr.equals("dKH") || unitStr.equals("mM") || unitStr.equals("mEq/L")){
+        if (unitStr.equals("dKH") || unitStr.equals("mEq/L")){
             formatStr = "%.2f %s";
         }
-        else if (unitStr.equalsIgnoreCase("S.G.")){
+        else if (unitStr.equalsIgnoreCase("S.G.") || unitStr.equals("mM")){
         	formatStr = "%.4f %s";
         }
         return String.format(formatStr, outnum, unitStr);

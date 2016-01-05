@@ -52,7 +52,7 @@ public class DosingComputer {
 													// the past you want the
 													// program to think it is.
 
-	// This array will be replaced by a class and a file full of records
+	// DONE This array will be replaced by a class and a file full of records
 	public static ArrayList<DosingProduct> dosingProductsList;
 //	= new ArrayList<>(
 //			Arrays.asList(new DosingProduct("Alkalinity Part",
@@ -82,6 +82,15 @@ public class DosingComputer {
 		guiFrame.setLocation(300, 200);
 		// guiFrame.setLocationRelativeTo(null);
 		guiFrame.setVisible(true);
+	}
+	
+	public static void closeOut(){
+		for(String tn : getTankNames()){
+			TankFile.saveTankToFile(getTank(tn));
+		}
+		Preferences.savePreferences();
+		WaterFile.saveWaters();
+		System.exit(0);
 	}
 
 	private static void loadAllTanks() {

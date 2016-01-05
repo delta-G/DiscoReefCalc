@@ -42,15 +42,18 @@ public class PVUPanel extends JPanel {
     private JComboBox paramComboBox;
     private JComboBox unitComboBox;
     private JTextField valueTextBox;
+    
+    private boolean lockToValue = false;  //  changing unit recalculates value field if true
+    private String oldUnitSelection;
 
     public PVUPanel() {
         initComponents();
-
         paramModel = new DefaultComboBoxModel(Parameter.values());
         currentParamSelection = Parameter.parseParam(paramModel.getSelectedItem().toString());
         paramComboBox.setModel(paramModel);
         setupUnitComboBox();
         unitComboBox.setModel(unitModel);
+        
         
     }
 
@@ -84,10 +87,15 @@ public class PVUPanel extends JPanel {
             unitModel.setSelectedItem("ppm");
         }
         unitComboBox.setModel(unitModel);
+        oldUnitSelection = unitModel.getSelectedItem().toString();
     }
 
     private void setParameterSelection(Parameter p) {
         this.currentParamSelection = p;
+    }
+    
+    public void setLockToValue(boolean aboo){
+    	lockToValue = aboo;
     }
 
     public Parameter getParameterSelection() {
@@ -113,17 +121,20 @@ public class PVUPanel extends JPanel {
     }
 
     public void setEnteredValue(Double aVal) {
-        valueTextBox.setText(aVal.toString());
+       // valueTextBox.setText(aVal.toString());
+    	valueTextBox.setText(Parameter.unitFormatter(aVal, this.getUnitSelection()));
     }
 
     public void setValueConverted(Double aVal) {
         Double conVal = this.currentParamSelection.convertToUnit(getUnitSelection(), aVal);
-        valueTextBox.setText(conVal.toString());
+        //valueTextBox.setText(conVal.toString());
+        valueTextBox.setText(Parameter.unitFormatter(conVal, this.getUnitSelection()));
     }
 
     public void setPVUEnabled(boolean aBoo) {
         this.valueTextBox.setEditable(aBoo);
-        this.unitComboBox.setEnabled(aBoo);
+//        this.unitComboBox.setEnabled(aBoo);
+        this.setLockToValue(!aBoo);
     }
 
     private void initComponents() {
@@ -140,6 +151,14 @@ public class PVUPanel extends JPanel {
                 paramComboBoxActionPerformed(evt);
             }
         });
+        
+        unitComboBox.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                unitComboBoxActionPerformed(evt);
+            }
+        });
+        
 
         this.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -166,12 +185,31 @@ public class PVUPanel extends JPanel {
     }
 
     private void paramComboBoxActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        
         Parameter p = Parameter.parseParam(paramComboBox.getSelectedItem().toString());
         if (p != currentParamSelection) {
             setParameterSelection(p);
             setupUnitComboBox();
 
+        }
+    }
+    
+    private void unitComboBoxActionPerformed(java.awt.event.ActionEvent evt) {
+        if(lockToValue){
+        	String curSelection = this.getUnitSelection();
+        	String entStr = this.valueTextBox.getText();
+        	if(!oldUnitSelection.equals(curSelection) && !entStr.equals("")){
+        		Double curval = 0.0;
+        		try {
+        			curval = this.currentParamSelection.convertFromUnit(oldUnitSelection, Double.parseDouble(entStr));
+        		} catch (NumberFormatException ex) {
+        			ErrorDialog.showErrorDialog("Please Input Valid Values");
+        		}
+        		oldUnitSelection = curSelection;
+        		this.setValueConverted(curval);
+        	}
+//        	Double curVal = this.getConvertedValue();
+//        	this.setValueConverted(curVal);
         }
     }
 

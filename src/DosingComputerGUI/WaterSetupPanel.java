@@ -20,12 +20,15 @@ package DosingComputerGUI;
 
 import dosingcomputer.Parameter;
 import dosingcomputer.Water;
+
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import javax.swing.JCheckBox;
 
 /**
  *
@@ -34,6 +37,7 @@ import java.util.HashMap;
 public class WaterSetupPanel extends javax.swing.JPanel {
     
     ArrayList<PVUPanel> lines;
+    JCheckBox lockToValCheckBox;
     
     public WaterSetupPanel() {
         lines = new ArrayList<>();
@@ -41,6 +45,15 @@ public class WaterSetupPanel extends javax.swing.JPanel {
     }
     
     private void initComponents() {
+    	
+    	lockToValCheckBox = new JCheckBox("Lock To Values");
+    	lockToValCheckBox.setSelected(false);
+    	lockToValCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lockToValCheckBoxActionPerformed(evt);
+            }
+        });
         
         this.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -50,6 +63,9 @@ public class WaterSetupPanel extends javax.swing.JPanel {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(5,5,5,5);
         gbc.anchor = GridBagConstraints.LINE_START;
+        
+        this.add(lockToValCheckBox, gbc);
+        gbc.gridy = 1;
         
         for(Parameter p : Parameter.values()){
             PVUPanel pvup = new PVUPanel(p);
@@ -94,6 +110,12 @@ public class WaterSetupPanel extends javax.swing.JPanel {
     public void setEnabled(boolean aBoo){
         for (PVUPanel pv : lines){
             pv.setPVUEnabled(aBoo);
+        }
+    }
+    
+    private void lockToValCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {
+        for (PVUPanel pv : lines){
+        	pv.setLockToValue(lockToValCheckBox.isSelected());
         }
     }
     

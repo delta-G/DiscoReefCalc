@@ -19,8 +19,11 @@
 package DosingComputerGUI;
 
 import dosingcomputer.DosingComputer;
+
+import java.awt.Component;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
@@ -33,17 +36,26 @@ public class ErrorDialog {
     public ErrorDialog() {
     }
 
-    public static void showErrorDialog(String message) {
-        JOptionPane.showMessageDialog(DosingComputer.guiFrame,
-                message,
+    public static void showErrorDialog(String aMessage) {
+//        JOptionPane.showMessageDialog(DosingComputer.guiFrame,
+//                message,
+//                "Error",
+//                JOptionPane.WARNING_MESSAGE);
+    	showErrorDialog(DosingComputer.guiFrame, aMessage);
+    }
+    
+    public static void showErrorDialog(Component aParent, String aMessage) {
+        JOptionPane.showMessageDialog(aParent,
+                aMessage,
                 "Error",
                 JOptionPane.WARNING_MESSAGE);
     }
+    
 
-    public static Boolean showErrorInputDialog(String message) {
+    public static Boolean showErrorInputDialog(String aMessage) {
 
         final JOptionPane optionPane = new JOptionPane(
-                message,
+                aMessage,
                 JOptionPane.QUESTION_MESSAGE,
                 JOptionPane.YES_NO_OPTION);
 
