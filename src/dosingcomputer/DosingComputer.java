@@ -131,7 +131,7 @@ public class DosingComputer {
 
 	public static void saveProducts() {
 		File outFile = new File(Preferences.getHomeDirectory().getPath()
-				+ "\\dosingProducts.dpf");
+				+ "/dosingProducts.dpf");
 
 		System.out.println("Saving Products");
 		System.out.println(outFile.getAbsolutePath());
@@ -153,7 +153,7 @@ public class DosingComputer {
 	public static void loadProducts() {
 		dosingProductsList = new ArrayList<>();
 		File inFile = new File(Preferences.getHomeDirectory().getPath()
-				+ "\\dosingProducts.dpf");
+				+ "/dosingProducts.dpf");
 
 		try {
 			BufferedReader inReader = new BufferedReader(new FileReader(inFile));

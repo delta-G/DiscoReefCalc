@@ -53,12 +53,12 @@ public class ChooseParameterDialog extends JDialog {
 		comboBox = new JComboBox<>();
 		comboBox.setModel(model);
 		
-		JOptionPane optionPane = new JOptionPane(aMessage,
+		final JOptionPane optionPane = new JOptionPane(aMessage,
 				JOptionPane.QUESTION_MESSAGE,
 				JOptionPane.OK_CANCEL_OPTION);
 		optionPane.add(comboBox);
 		
-		JDialog dialog = new JDialog(DosingComputer.guiFrame,
+		final JDialog dialog = new JDialog(DosingComputer.guiFrame,
 				"Please choose a Parameter:",
 				true);
 		dialog.setContentPane(optionPane);
