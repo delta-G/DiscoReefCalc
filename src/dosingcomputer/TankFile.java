@@ -43,7 +43,7 @@ public class TankFile {
             outWriter.write(new Long(DosingComputer.getTheTime()).toString() + '\n');
             outWriter.write(tank.getName() + '\n');
             outWriter.write(tank.getVolume().toString() + '\n');
-            outWriter.write(tank.getTankRecordFile().getFile().getAbsolutePath() + '\n');
+            outWriter.write(tank.getTankRecordFile().getFile().getName() + '\n');
             
             outWriter.write("## ## ## Dosing Products:\n");
             for (DosingProduct product : tank.getDosingProducts()) {
@@ -83,7 +83,8 @@ public class TankFile {
             
             
             Tank tank = new Tank(name, volume);
-            tank.setTankRecordFile(new TankRecordFile(new File(in.readLine())));
+            String trfStr = Preferences.getHomeDirectory() + "/" + in.readLine();
+            tank.setTankRecordFile(new TankRecordFile(new File(trfStr)));
             
             line = in.readLine();
             if(line.equals("## ## ## Dosing Products:")){

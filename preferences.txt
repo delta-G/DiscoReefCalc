@@ -1,7 +1,7 @@
-<Home Directory>E:/DosCompFiles/
-<Alkalinity Units>dKH
-<Tank Volume Units>gal
-<Tanks Directory>E:/DosCompFiles/
-<Dose Volume Units>mL
 <Salinity Units>ppt
+<Dose Volume Units>mL
 <Months to Keep History>6
+<Alkalinity Units>dKH
+<Tanks Directory>/media/edrive/DosCompFiles/
+<Tank Volume Units>gal
+<Home Directory>/media/edrive/DosCompFiles/
