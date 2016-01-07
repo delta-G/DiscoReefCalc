@@ -73,6 +73,7 @@ public class GUIFrame  extends JFrame {
     private JMenuItem fileMenuItemCreateTank;
     private JMenuItem fileMenuItemSaveTank;
     private JMenuItem editMenuItemCalculator;
+    private JMenuItem editMenuItemPreferences;
     private JButton exitButton;
 //    private JButton jButton2;
 //    private JButton jButton3;
@@ -248,6 +249,7 @@ public class GUIFrame  extends JFrame {
         fileMenuItemCreateTank = new JMenuItem();
         fileMenuItemSaveTank = new JMenuItem();
         editMenuItemCalculator = new JMenuItem();
+        editMenuItemPreferences = new JMenuItem();
         jMenu_Edit = new JMenu();
         jMenu_Tank = new JMenu();
         tankMenuItemAddWaterTest = new JMenuItem();
@@ -334,11 +336,20 @@ public class GUIFrame  extends JFrame {
         editMenuItemCalculator.addActionListener(new java.awt.event.ActionListener() {
         	public void actionPerformed(java.awt.event.ActionEvent ae){
         		editMenuItemCalculatorActionPerformed(ae);
-        	}
-
-			
+        	}			
         });
         jMenu_Edit.add(editMenuItemCalculator);
+        
+        editMenuItemPreferences.setText("Preferences");
+        editMenuItemPreferences.addActionListener(new java.awt.event.ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent ae) {
+				editMenuItemPreferencesActionPerformed(ae);				
+			}
+        	
+        });
+        jMenu_Edit.add(editMenuItemPreferences);
         
         jMenuBar.add(jMenu_Edit);
 
@@ -541,12 +552,21 @@ public class GUIFrame  extends JFrame {
     private void editMenuItemCalculatorActionPerformed(java.awt.event.ActionEvent ae) {
 		
     	CalculatorDialog cdi = new CalculatorDialog();
-    	cdi.setLocationRelativeTo(this);;
+    	cdi.setLocationRelativeTo(this);
     	cdi.setMinimumSize(cdi.getPreferredSize());
     	cdi.setModal(true);
     	cdi.setVisible(true);
 		
 	}
+    
+    private void editMenuItemPreferencesActionPerformed(java.awt.event.ActionEvent ae) {
+    	PreferencesDialog pdi = new PreferencesDialog();
+    	pdi.setLocationRelativeTo(this);
+    	pdi.setMinimumSize(pdi.getPreferredSize());
+    	pdi.setModal(true);
+    	pdi.setVisible(true);
+    	
+    }
 
     private void tankMenuItemAddWaterTestActionPerformed(java.awt.event.ActionEvent evt) {                                                         
         AddWaterTestDialog resframe = new AddWaterTestDialog(this.getCurrentTank());

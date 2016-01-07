@@ -61,6 +61,9 @@ public class ParamPickerDialog extends JDialog {
 	
 	private void initComponents(){
 		
+		this.setTitle("Choose Parameters");
+		setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+		
 		okButton = new JButton("OK");
 		okButton.addActionListener(new java.awt.event.ActionListener(){
 			public void actionPerformed(java.awt.event.ActionEvent ae){

@@ -83,7 +83,7 @@ public class TankFile {
             
             
             Tank tank = new Tank(name, volume);
-            String trfStr = Preferences.getHomeDirectory() + "/" + in.readLine();
+            String trfStr = Preferences.getTankDirectory() + "/" + in.readLine();
             tank.setTankRecordFile(new TankRecordFile(new File(trfStr)));
             
             line = in.readLine();

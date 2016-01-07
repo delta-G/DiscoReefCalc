@@ -48,6 +48,9 @@ public class CalculatorDialog extends JDialog {
 	}
 
 	private void initComponents() {
+		
+		this.setTitle("Calculator");
+		setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
 		origWaterPanel = new CalculatorWaterPanel(Parameter.ALKALINITY);
 		deltaWaterPanel = new CalculatorWaterPanel(Parameter.ALKALINITY);
