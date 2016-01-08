@@ -1,5 +1,8 @@
 package DosingComputerGUI;
 
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.io.File;
 
@@ -127,7 +130,104 @@ public class PreferencesDialog extends JDialog {
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints constraints = new GridBagConstraints();
 		
+		constraints.anchor = GridBagConstraints.CENTER;
+		constraints.fill = GridBagConstraints.HORIZONTAL;
+		constraints.insets = new Insets(5,5,5,5);
 		
+		constraints.gridx = 0;
+		constraints.gridy = 0;
+		this.add(new JLabel("Update Preferences :"), constraints);
+		
+		constraints.gridx = 0;
+		constraints.gridy = 1;
+		constraints.gridwidth = 2;
+		constraints.anchor = GridBagConstraints.LINE_START;
+		this.add(homeDirectoryTextField, constraints);
+		constraints.gridx = 2;
+		constraints.gridy = 1;
+		constraints.gridwidth = 2;
+		constraints.anchor = GridBagConstraints.LINE_END;
+		this.add(browseHomeDirectoryButton, constraints);
+		
+		constraints.gridx = 0;
+		constraints.gridy = 2;
+		constraints.gridwidth = 2;
+		constraints.anchor = GridBagConstraints.LINE_START;
+		this.add(tankDirectoryTextField, constraints);
+		
+		constraints.gridx = 2;
+		constraints.gridy = 2;
+		constraints.gridwidth = 2;
+		constraints.anchor = GridBagConstraints.LINE_END;
+		this.add(browseTankDirectoryButton, constraints);
+		
+		constraints.gridx = 0;
+		constraints.gridy = 3;
+		constraints.gridwidth = 2;
+		constraints.anchor = GridBagConstraints.LINE_START;
+		this.add(alkUnitLabel, constraints);
+		
+		constraints.gridx = 2;
+		constraints.gridy = 3;
+		constraints.gridwidth = 2;
+		constraints.anchor = GridBagConstraints.LINE_END;
+		this.add(alkUnitComboBox, constraints);
+		
+		constraints.gridx = 0;
+		constraints.gridy = 4;
+		constraints.gridwidth = 2;
+		constraints.anchor = GridBagConstraints.LINE_START;
+		this.add(salUnitLabel, constraints);
+		
+		constraints.gridx = 2;
+		constraints.gridy = 4;
+		constraints.gridwidth = 2;
+		constraints.anchor = GridBagConstraints.LINE_END;
+		this.add(salUnitComboBox, constraints);
+		
+		constraints.gridx = 0;
+		constraints.gridy = 5;
+		constraints.gridwidth = 2;
+		constraints.anchor = GridBagConstraints.LINE_START;
+		this.add(tankVolUnitLabel, constraints);
+		
+		constraints.gridx = 2;
+		constraints.gridy = 5;
+		constraints.gridwidth = 2;
+		constraints.anchor = GridBagConstraints.LINE_END;
+		this.add(tankVolUnitComboBox, constraints);
+		
+		constraints.gridx = 0;
+		constraints.gridy = 6;
+		constraints.gridwidth = 2;
+		constraints.anchor = GridBagConstraints.LINE_START;
+		this.add(doseVolUnitLabel, constraints);
+		
+		constraints.gridx = 2;
+		constraints.gridy = 6;
+		constraints.gridwidth = 2;
+		constraints.anchor = GridBagConstraints.LINE_END;
+		this.add(doseVolUnitComboBox, constraints);
+		
+		constraints.anchor = GridBagConstraints.LINE_END;
+		constraints.fill = GridBagConstraints.NONE;
+		constraints.gridwidth = 1;
+		
+		constraints.gridx = 1;
+		constraints.gridy = 7;
+		this.add(resetButton, constraints);
+		
+		constraints.gridx = 2;
+		constraints.gridy = 7;
+		this.add(cancelButton, constraints);
+		
+		constraints.gridx = 3;
+		constraints.gridy = 7;
+		this.add(savePrefsButton, constraints);
+		
+		
+		
+		this.pack();
 		
 
 	}
@@ -161,6 +261,7 @@ public class PreferencesDialog extends JDialog {
 		Preferences.setSalinityUnit(salUnitComboBox.getSelectedItem().toString());
 		Preferences.setTankVolumeUnit((VolumeUnits)tankVolUnitComboBox.getSelectedItem());
 		Preferences.setDoseVolumeUnit((VolumeUnits)doseVolUnitComboBox.getSelectedItem());
+		Preferences.savePreferences();
 	}
 
 	private void cancelButtonActionPerformed(java.awt.event.ActionEvent ae) {

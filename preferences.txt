@@ -1,7 +1,7 @@
-<Salinity Units>ppt
+<Salinity Units>S.G.
 <Dose Volume Units>mL
 <Months to Keep History>6
 <Alkalinity Units>dKH
-<Tanks Directory>/media/edrive/DosCompFiles/
+<Tanks Directory>/media/edrive/DosCompFiles
 <Tank Volume Units>gal
-<Home Directory>/media/edrive/DosCompFiles/
+<Home Directory>/media/edrive/DosCompFiles
