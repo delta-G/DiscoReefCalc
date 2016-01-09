@@ -57,8 +57,8 @@ public class StartupWizard {
 			tfile = chooseDirectory("Choose Tank Directory :" , Preferences.getTankDirectory());
 		}
 		
-		System.out.println("Home Directory : " + hfile.getAbsolutePath());
-		System.out.println("Tank Directory : " + tfile.getAbsolutePath());
+//		System.out.println("Home Directory : " + hfile.getAbsolutePath());
+//		System.out.println("Tank Directory : " + tfile.getAbsolutePath());
 		
 		Preferences.setHomeDirectory(hfile);
 		Preferences.setTankDirectory(tfile);

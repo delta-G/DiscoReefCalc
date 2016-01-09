@@ -262,6 +262,7 @@ public class PreferencesDialog extends JDialog {
 		Preferences.setTankVolumeUnit((VolumeUnits)tankVolUnitComboBox.getSelectedItem());
 		Preferences.setDoseVolumeUnit((VolumeUnits)doseVolUnitComboBox.getSelectedItem());
 		Preferences.savePreferences();
+		this.dispose();
 	}
 
 	private void cancelButtonActionPerformed(java.awt.event.ActionEvent ae) {

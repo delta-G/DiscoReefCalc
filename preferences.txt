@@ -1,7 +1,7 @@
-<Home Directory>E:/DosCompFiles
+<Home Directory>E:\DosCompFiles
 <Alkalinity Units>dKH
 <Tank Volume Units>gal
-<Tanks Directory>E:/DosCompFiles
+<Tanks Directory>E:\DosCompFiles
 <Dose Volume Units>mL
 <Salinity Units>S.G.
 <Months to Keep History>6

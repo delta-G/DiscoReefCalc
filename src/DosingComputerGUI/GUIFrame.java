@@ -563,6 +563,8 @@ public class GUIFrame  extends JFrame {
     	pdi.setMinimumSize(pdi.getPreferredSize());
     	pdi.setModal(true);
     	pdi.setVisible(true);
+    	this.setupParamPanels();
+    	this.setupProductPanels();
     	
     }
 

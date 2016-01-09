@@ -90,8 +90,8 @@ public class DosingComputer {
 	
 	public static void closeOut(){
 		
-		System.out.println("CLOSING OUT!");
-		System.out.flush();
+//		System.out.println("CLOSING OUT!");
+//		System.out.flush();
 		
 		for(String tn : getTankNames()){
 			TankFile.saveTankToFile(getTank(tn));
