@@ -74,6 +74,7 @@ public class GUIFrame  extends JFrame {
     private JMenuItem fileMenuItemSaveTank;
     private JMenuItem editMenuItemCalculator;
     private JMenuItem editMenuItemPreferences;
+    private JMenuItem editMenuItemSaveWater;
     private JButton exitButton;
 //    private JButton jButton2;
 //    private JButton jButton3;
@@ -248,6 +249,7 @@ public class GUIFrame  extends JFrame {
         fileMenuItemSaveTank = new JMenuItem();
         editMenuItemCalculator = new JMenuItem();
         editMenuItemPreferences = new JMenuItem();
+        editMenuItemSaveWater = new JMenuItem();
         jMenu_Edit = new JMenu();
         jMenu_Tank = new JMenu();
         tankMenuItemAddWaterTest = new JMenuItem();
@@ -348,6 +350,17 @@ public class GUIFrame  extends JFrame {
         	
         });
         jMenu_Edit.add(editMenuItemPreferences);
+        
+        editMenuItemSaveWater.setText("Save Water");
+        editMenuItemSaveWater.addActionListener(new java.awt.event.ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent ae) {
+				editMenuItemSaveWaterActionPerformed(ae);				
+			}
+        	
+        });
+        jMenu_Edit.add(editMenuItemSaveWater);
         
         jMenuBar.add(jMenu_Edit);
 
@@ -564,8 +577,15 @@ public class GUIFrame  extends JFrame {
     	pdi.setModal(true);
     	pdi.setVisible(true);
     	this.setupParamPanels();
-    	this.setupProductPanels();
-    	
+    	this.setupProductPanels();    	
+    }
+    
+    private void editMenuItemSaveWaterActionPerformed(java.awt.event.ActionEvent ae) {
+    	SaveWaterDialog swd = new SaveWaterDialog();
+    	swd.setLocationRelativeTo(this);
+    	swd.setMinimumSize(swd.getPreferredSize());
+    	swd.setModal(true);
+    	swd.setVisible(true);    	
     }
 
     private void tankMenuItemAddWaterTestActionPerformed(java.awt.event.ActionEvent evt) {                                                         

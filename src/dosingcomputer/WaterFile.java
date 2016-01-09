@@ -34,7 +34,7 @@ import DosingComputerGUI.ErrorDialog;
 
 public class WaterFile {
 	
-	private static final File waterFile = new File(Preferences.getHomeDirectory() + "\\water_file.wtf");
+	private static final File waterFile = new File(Preferences.getHomeDirectory() + "/water_file.wtf");
 	private static HashMap<String, Water> waterMap;
 	static {
 		waterMap = new HashMap<>();
@@ -75,7 +75,7 @@ public class WaterFile {
 		try (BufferedReader inReader = new BufferedReader(new FileReader(waterFile))){
 			String instr = inReader.readLine();
 			while(instr != null){
-				String splitstr[] = instr.split(",", 1);
+				String splitstr[] = instr.split(",", 2);
 				waterMap.put(splitstr[0], new Water(splitstr[1]));
 				instr = inReader.readLine();
 			}

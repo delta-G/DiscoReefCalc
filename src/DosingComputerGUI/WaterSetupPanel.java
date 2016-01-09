@@ -36,8 +36,8 @@ import javax.swing.JCheckBox;
  */
 public class WaterSetupPanel extends javax.swing.JPanel {
     
-    ArrayList<PVUPanel> lines;
-    JCheckBox lockToValCheckBox;
+    private ArrayList<PVUPanel> lines;
+    private JCheckBox lockToValCheckBox;
     
     public WaterSetupPanel() {
         lines = new ArrayList<>();
@@ -111,6 +111,11 @@ public class WaterSetupPanel extends javax.swing.JPanel {
         for (PVUPanel pv : lines){
             pv.setPVUEnabled(aBoo);
         }
+    }
+    
+    public void setLockToValue(Boolean aboo){
+    	this.lockToValCheckBox.setSelected(aboo);
+    	this.lockToValCheckBoxActionPerformed(null);
     }
     
     private void lockToValCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {

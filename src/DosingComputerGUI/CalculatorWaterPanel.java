@@ -22,6 +22,7 @@ package DosingComputerGUI;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -30,6 +31,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import dosingcomputer.Parameter;
+import dosingcomputer.Water;
 
 public class CalculatorWaterPanel extends JPanel {
 
@@ -37,6 +39,7 @@ public class CalculatorWaterPanel extends JPanel {
 	VolumeEntryPanel volPanel;
 	HashMap<Parameter, PVUPanel> lines;
 	JPanel innerPanel;
+	JButton saveButton;
 	Boolean enabled = true;
 
 	public CalculatorWaterPanel(Parameter aPar) {
@@ -59,8 +62,8 @@ public class CalculatorWaterPanel extends JPanel {
 		}
 		setupInnerPanel();
 	}
-	
-	public void setCWPEnabled(Boolean aBoo){
+
+	public void setCWPEnabled(Boolean aBoo) {
 		this.enabled = aBoo;
 		setupInnerPanel();
 	}
@@ -85,10 +88,32 @@ public class CalculatorWaterPanel extends JPanel {
 		volPanel.setValueConverted(aVal);
 	}
 
+	public Water getWater() {
+		Water retval = new Water();
+		for (Parameter p : Parameter.values()) {
+			if (lines.keySet().contains(p)) {
+				retval.setValue(p, lines.get(p).getConvertedValue());
+			} else {
+				retval.setValue(p, 0.0);
+			}
+		}
+		return retval;
+	}
+
 	private void initComponents() {
 		mainLabel = new JLabel("some random text");
 		volPanel = new VolumeEntryPanel();
 		innerPanel = new JPanel();
+		saveButton = new JButton("Save");
+		
+		saveButton.addActionListener(new java.awt.event.ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent ae) {
+				saveButtonActionPerformed(ae);				
+			}
+			
+		});
 
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints constraints = new GridBagConstraints();
@@ -107,6 +132,10 @@ public class CalculatorWaterPanel extends JPanel {
 
 		setupInnerPanel();
 		this.add(innerPanel, constraints);
+		
+		constraints.gridy = 3;
+		constraints.anchor = GridBagConstraints.LINE_END;
+		this.add(saveButton, constraints);
 	}
 
 	private void setupInnerPanel() {
@@ -133,6 +162,14 @@ public class CalculatorWaterPanel extends JPanel {
 			lines.put(aPar, new PVUPanel(aPar));
 			setupInnerPanel();
 		}
+	}
+	
+	private void saveButtonActionPerformed(java.awt.event.ActionEvent ae) {
+		SaveWaterDialog swd = new SaveWaterDialog(this.getWater());
+    	swd.setLocationRelativeTo(this);
+    	swd.setMinimumSize(swd.getPreferredSize());
+    	swd.setModal(true);
+    	swd.setVisible(true); 
 	}
 
 }
