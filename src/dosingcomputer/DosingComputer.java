@@ -20,6 +20,7 @@ package dosingcomputer;
 
 //import DosingComputerGUI.GUIFrameOld;
 import DosingComputerGUI.GUIFrame;
+import DosingComputerGUI.StartupWizard;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -77,6 +78,9 @@ public class DosingComputer {
 		Preferences.loadPreferences();
 		loadProducts();
 		loadAllTanks();
+		
+		//StartupWizard.runWizard();
+		
 		guiFrame = new GUIFrame();
 		guiFrame.setMeUp();
 		guiFrame.setLocation(300, 200);
@@ -85,6 +89,10 @@ public class DosingComputer {
 	}
 	
 	public static void closeOut(){
+		
+		System.out.println("CLOSING OUT!");
+		System.out.flush();
+		
 		for(String tn : getTankNames()){
 			TankFile.saveTankToFile(getTank(tn));
 		}

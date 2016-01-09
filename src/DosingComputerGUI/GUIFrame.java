@@ -166,17 +166,15 @@ public class GUIFrame  extends JFrame {
 
     public GUIFrame() {
         initComponents();
-        this.addWindowListener(new WindowEventHandler());
+        this.addWindowListener(new WindowAdapter() {
+        	@Override
+            public void windowClosing(WindowEvent e) {
+                DosingComputer.closeOut();
+            }
+        });
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
-    class WindowEventHandler extends WindowAdapter {
-
-        @Override
-        public void windowClosing(WindowEvent e) {
-            DosingComputer.closeOut();
-        }
-    }
 
     private void setupParamPanels() {
         parameterPanel.removeAll();
@@ -620,6 +618,7 @@ public class GUIFrame  extends JFrame {
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {                                         
         this.dispose();
+        DosingComputer.closeOut();
     }                                        
 
     private void tankMenuItemManualDoseActionPerformed(java.awt.event.ActionEvent evt) {                                                       

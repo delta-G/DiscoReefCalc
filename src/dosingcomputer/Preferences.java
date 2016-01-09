@@ -19,6 +19,8 @@
 package dosingcomputer;
 
 import DosingComputerGUI.ErrorDialog;
+import DosingComputerGUI.StartupWizard;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -155,8 +157,18 @@ public class Preferences {
     }
 
     public static void loadPreferences() {
+    	
+    	File saveFile = new File("./preferences.txt");
+    	if(!saveFile.exists()){
+    		try {
+				saveFile.createNewFile();
+				StartupWizard.runWizard();
+			} catch (IOException e) {
+				ErrorDialog.showExceptionDialog(e);
+			}
+    	}
 
-        try (BufferedReader inReader = new BufferedReader(new FileReader("./preferences.txt"))) {
+        try (BufferedReader inReader = new BufferedReader(new FileReader(saveFile))) {
 
             String line = inReader.readLine();
 
