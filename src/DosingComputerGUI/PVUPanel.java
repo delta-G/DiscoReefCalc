@@ -20,9 +20,12 @@ package DosingComputerGUI;
 
 import dosingcomputer.Parameter;
 import dosingcomputer.Preferences;
+
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;

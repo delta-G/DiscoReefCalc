@@ -82,10 +82,11 @@ public class VolumeEntryPanel extends JPanel {
 		valueTextField.setText(conval.toString());
 	}
 
-	public void setEnabled(boolean aBoo) {
+	public void setVEPEnabled(boolean aBoo) {
 		this.valueTextField.setEditable(aBoo);
 		//this.lockToValue = !aBoo;
-		this.unitComboBox.setEnabled(aBoo);
+		//this.unitComboBox.setEnabled(aBoo);
+		this.lockToValue = !aBoo;
 	}
 
 	private void initComponents() {

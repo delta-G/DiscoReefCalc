@@ -63,8 +63,13 @@ public class CalculatorWaterPanel extends JPanel {
 		setupInnerPanel();
 	}
 
-	public void setCWPEnabled(Boolean aBoo) {
-		this.enabled = aBoo;
+	public void setParamEnabled(Boolean aBoo) {
+		this.enabled = aBoo;		
+		setupInnerPanel();
+	}
+	
+	public void setVolEnabled(Boolean aBoo) {
+		this.volPanel.setVEPEnabled(aBoo);
 		setupInnerPanel();
 	}
 
@@ -154,6 +159,7 @@ public class CalculatorWaterPanel extends JPanel {
 			constraints.gridy += 1;
 		}
 		this.revalidate();
+		this.repaint();
 
 	}
 
