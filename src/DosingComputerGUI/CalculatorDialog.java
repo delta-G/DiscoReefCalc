@@ -160,8 +160,11 @@ public class CalculatorDialog extends JDialog {
 		volConButtonGroup.add(conRadioButton);
 
 		origWaterPanel = new CalculatorWaterPanel(Parameter.ALKALINITY);
+		origWaterPanel.setLabelString("Starting Water");
 		deltaWaterPanel = new CalculatorWaterPanel(Parameter.ALKALINITY);
+		deltaWaterPanel.setLabelString("Add / Change Water");
 		resultWaterPanel = new CalculatorWaterPanel(Parameter.ALKALINITY);
+		resultWaterPanel.setLabelString("Result Water");
 		setupCalcMode();
 
 		calculateButton = new JButton("Calculate");
@@ -503,6 +506,14 @@ public class CalculatorDialog extends JDialog {
 			volRadioButton.setEnabled(true);
 			conRadioButton.setEnabled(true);
 		}
+		
+		// Even numbered modes are add modes
+		if(mode%2 == 0){
+			deltaWaterPanel.setLabelString("Water To Add");
+		} else {
+			deltaWaterPanel.setLabelString("Change Water");
+		}
+		this.revalidate();
 	}
 
 	private void radioButtonsActionPerformed(java.awt.event.ActionEvent ae) {

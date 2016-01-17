@@ -35,12 +35,13 @@ import dosingcomputer.Water;
 
 public class CalculatorWaterPanel extends JPanel {
 
-	JLabel mainLabel;
-	VolumeEntryPanel volPanel;
-	HashMap<Parameter, PVUPanel> lines;
-	JPanel innerPanel;
-	JButton saveButton;
-	Boolean enabled = true;
+	private JLabel mainLabel;
+	private VolumeEntryPanel volPanel;
+	private HashMap<Parameter, PVUPanel> lines;
+	private JPanel innerPanel;
+	private JButton saveButton;
+	private Boolean enabled = true;
+	private String labelStr = "";
 
 	public CalculatorWaterPanel(Parameter aPar) {
 		lines = new HashMap<>();
@@ -61,6 +62,15 @@ public class CalculatorWaterPanel extends JPanel {
 			}
 		}
 		setupInnerPanel();
+	}
+	
+	public void setLabelString(String aStr){
+		this.labelStr = aStr;
+		this.mainLabel.setText(aStr);
+	}
+	
+	public String getLabelString(String aStr){
+		return this.labelStr;
 	}
 
 	public void setParamEnabled(Boolean aBoo) {
@@ -106,7 +116,7 @@ public class CalculatorWaterPanel extends JPanel {
 	}
 
 	private void initComponents() {
-		mainLabel = new JLabel("some random text");
+		mainLabel = new JLabel(this.labelStr);
 		volPanel = new VolumeEntryPanel();
 		innerPanel = new JPanel();
 		saveButton = new JButton("Save");
