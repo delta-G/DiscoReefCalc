@@ -15,7 +15,7 @@
 
 
 
-*/
+ */
 
 package dosingcomputer;
 
@@ -33,69 +33,79 @@ import java.util.logging.Logger;
 import DosingComputerGUI.ErrorDialog;
 
 public class WaterFile {
-	
-	private static final File waterFile = new File(Preferences.getHomeDirectory() + "/water_file.wtf");
+
+	private static final File waterFile = new File(
+			Preferences.getHomeDirectory() + "/water_file.wtf");
 	private static HashMap<String, Water> waterMap;
 	static {
 		waterMap = new HashMap<>();
 		if (!waterFile.isFile()) {
-            try {
-                waterFile.createNewFile();
-            } catch (IOException ex) {
-                Logger.getLogger(TankRecordFile.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+			try {
+				waterFile.createNewFile();
+			} catch (IOException ex) {
+				Logger.getLogger(TankRecordFile.class.getName()).log(
+						Level.SEVERE, null, ex);
+			}
+		}
 		readWaters();
 	}
-	
-	public WaterFile(){
-				
+
+	public WaterFile() {
+
 	}
-	
-	public static void saveWaters(){
-		
-		try(BufferedWriter outWriter = new BufferedWriter(new FileWriter(waterFile , false))){  // no append - overwrite
-			  
-			
-			for(String s : getWaterNames()){
+
+	public static void saveWaters() {
+
+		try (BufferedWriter outWriter = new BufferedWriter(new FileWriter(
+				waterFile, false))) { // no append - overwrite
+
+			for (String s : getWaterNames()) {
 				outWriter.write(s);
 				outWriter.write(",");
 				outWriter.write(waterMap.get(s).toString());
 				outWriter.write("\n");
-				
+
 			}
-			
-		}  catch (IOException ex){
+
+		} catch (IOException ex) {
 			ErrorDialog.showExceptionDialog(ex);
-		}  
-		
+		}
+
 	}
-	
-	private static void readWaters(){
-		try (BufferedReader inReader = new BufferedReader(new FileReader(waterFile))){
+
+	private static void readWaters() {
+		try (BufferedReader inReader = new BufferedReader(new FileReader(
+				waterFile))) {
 			String instr = inReader.readLine();
-			while(instr != null){
+			while (instr != null) {
 				String splitstr[] = instr.split(",", 2);
 				waterMap.put(splitstr[0], new Water(splitstr[1]));
 				instr = inReader.readLine();
 			}
-		} catch (IOException ex){
+		} catch (IOException ex) {
 			ErrorDialog.showExceptionDialog(ex);
 		}
 	}
-	
-	public static ArrayList<String> getWaterNames(){
-		return new ArrayList<String>(waterMap.keySet());		
+
+	public static String[] getWaterNamesArray() {
+		String[] dummy = new String[1];
+		return waterMap.keySet().toArray(dummy);
 	}
 	
-	public static Water getWater(String aName){
-		return waterMap.get(aName);
+	public static ArrayList<String> getWaterNames() {
+		return new ArrayList<String>(waterMap.keySet());
 	}
-	
-	public static void putWater(String aName, Water aWater){
+
+	public static Water getWater(String aName) {
+		Water retval = new Water();
+		if (waterMap.containsKey(aName)) {
+			retval = waterMap.get(aName);
+		}
+		return retval;
+	}
+
+	public static void putWater(String aName, Water aWater) {
 		waterMap.put(aName, aWater);
 	}
-	
-	
 
 }

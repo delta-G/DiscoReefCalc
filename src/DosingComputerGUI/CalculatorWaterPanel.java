@@ -19,6 +19,7 @@
 
 package DosingComputerGUI;
 
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -29,6 +30,7 @@ import java.util.HashMap;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.LineBorder;
 
 import dosingcomputer.Parameter;
 import dosingcomputer.Water;
@@ -40,6 +42,7 @@ public class CalculatorWaterPanel extends JPanel {
 	private HashMap<Parameter, PVUPanel> lines;
 	private JPanel innerPanel;
 	private JButton saveButton;
+	private JButton loadButton;
 	private Boolean enabled = true;
 	private String labelStr = "";
 
@@ -114,12 +117,19 @@ public class CalculatorWaterPanel extends JPanel {
 		}
 		return retval;
 	}
+	
+	public void setWater(Water awater){
+		for(Parameter p : lines.keySet()){
+			lines.get(p).setValueConverted(awater.getValue(p));
+		}
+	}
 
 	private void initComponents() {
 		mainLabel = new JLabel(this.labelStr);
 		volPanel = new VolumeEntryPanel();
 		innerPanel = new JPanel();
 		saveButton = new JButton("Save");
+		loadButton = new JButton("Load");
 		
 		saveButton.addActionListener(new java.awt.event.ActionListener() {
 
@@ -129,6 +139,16 @@ public class CalculatorWaterPanel extends JPanel {
 			}
 			
 		});
+		
+		loadButton.addActionListener(new java.awt.event.ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent ae) {
+				loadButtonActionPerformed(ae);				
+			}
+			
+		});
+		
 
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints constraints = new GridBagConstraints();
@@ -138,19 +158,31 @@ public class CalculatorWaterPanel extends JPanel {
 		constraints.fill = GridBagConstraints.HORIZONTAL;
 		constraints.insets = new Insets(5, 5, 5, 5);
 		constraints.anchor = GridBagConstraints.LINE_START;
-
+		constraints.weightx = 1.0;
 		this.add(mainLabel, constraints);
-
+		
+		constraints.fill = GridBagConstraints.NONE;
+		constraints.anchor = GridBagConstraints.LINE_END;
+		constraints.gridx = 1;
+		constraints.weightx = 0.2;
+		this.add(loadButton, constraints);
+		
+		constraints.gridx = 2;
+		this.add(saveButton, constraints);
+		
+		constraints.gridx = 0;
 		constraints.gridy = 1;
+		constraints.fill = GridBagConstraints.HORIZONTAL;
+		constraints.anchor = GridBagConstraints.LINE_START;
+		constraints.gridwidth = 3;
 		this.add(volPanel, constraints);
 		constraints.gridy = 2;
 
 		setupInnerPanel();
 		this.add(innerPanel, constraints);
 		
-		constraints.gridy = 3;
-		constraints.anchor = GridBagConstraints.LINE_END;
-		this.add(saveButton, constraints);
+		this.setBorder(new LineBorder(Color.black, 2));
+		
 	}
 
 	private void setupInnerPanel() {
@@ -186,6 +218,10 @@ public class CalculatorWaterPanel extends JPanel {
     	swd.setMinimumSize(swd.getPreferredSize());
     	swd.setModal(true);
     	swd.setVisible(true); 
+	}
+	
+	private void loadButtonActionPerformed(java.awt.event.ActionEvent ae) {
+		this.setWater(ChooseWaterDialog.getWaterSelection("Choose Water"));
 	}
 
 }
